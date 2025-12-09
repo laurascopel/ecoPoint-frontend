@@ -1,10 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import Dashboard from "../pages/Dashboard";
+import Login from "../pages/Login";
+import DashboardColetora from "../pages/coletora/DashboardColetora";
 import DashboardLayout from "../layouts/DashboardLayout";
-import NovaSolicitacao from "../pages/NovaSolicitacao";
-import LoginColetora from "../pages/LoginColetora";
-import LoginGeradora from "../pages/LoginGeradora";
+import NovaSolicitacao from "../pages/geradora/NovaSolicitacao";
 
 function AppRoutes() {
   return (
@@ -15,7 +14,7 @@ function AppRoutes() {
 
       <Route path="/" element={<DashboardLayout />}>
 
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={<DashboardColetora />} />
         <Route path="nova-solicitacao" element={<NovaSolicitacao />} />
 
       </Route>

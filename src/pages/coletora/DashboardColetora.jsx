@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "../styles/pages/Dashboard.css";
-import Card from "../components/Card";
+import "../../styles/pages/coletora/DashboardColetora.css";
+import Card from "../../components/Card";
 import { FaFileExport } from "react-icons/fa6";
 
-function Dashboard() {
+function DashboardColetora() {
 
   const [solicitacoes, setSolicitacoes] = useState([]);
 
@@ -106,4 +106,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DashboardColetora;
