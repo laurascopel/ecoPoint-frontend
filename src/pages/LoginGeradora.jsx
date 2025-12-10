@@ -5,37 +5,68 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function LoginGeradora() {
-  const navigate = useNavigate(); {/*metodo do react para navegador no routes*/} 
-  const [email,setEmail] = useState(""); {/* armazena ou alterar uma variavel(email) em tempo real */}
-  const [senha,setSenha] = useState("");
+  const navigate = useNavigate(); // método do react-router
+  const [email, setEmail] = useState(""); // armazena email em tempo real
+  const [senha, setSenha] = useState(""); // armazena senha em tempo real
+
+  function logar(e) {
+    e.preventDefault(); // evita reload da página
+    fetch("http://localhost:8080/EmpresaGeradora/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, senha }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          navigate("/dashboardGeradora");
+        } else {
+          console.log("Resposta de erro:", res);
+        }
+      });
+  }
+
   return (
     <div className="login-container">
-
-    <div className="login-esquerda">
+      <div className="login-esquerda">
         <div className="login-box">
-        <a className="botao-voltar" href="/home">
-        <MdKeyboardArrowLeft /> Página Inicial
-        </a>
-        
-        <h1>Faça login</h1>
-        <p className="descricao">Coloque seu e-mail e sua senha para fazer login</p>
+          <a className="botao-voltar" href="/home">
+            <MdKeyboardArrowLeft /> Página Inicial
+          </a>
 
-        <label>E-mail*</label>
-        <input type="email" placeholder="Digite seu e-mail" value={email} onChange={(e)=> setEmail(e.target.value)} />  {/*onChange identifica qnd o valor do imput muda, e dentro dele td q for mudado ele vai por dentro do Email  */}
-        <label>Senha*</label>
-        <input type="password" placeholder="Digite sua senha" value={senha} onChange={(e)=> setSenha(e.target.value)} />
+          <h1>Faça login</h1>
+          <p className="descricao">Coloque seu e-mail e sua senha para fazer login</p>
 
-        <button className="botao-login" onClick={() => navigate("/dashboard")}>Entrar</button>
+          {/* formulário chama logar no submit */}
+          <form onSubmit={logar}>
+            <label>E-mail</label>
+            <input
+              type="email"
+              placeholder="Digite seu e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-        <p className="cadastro">Não possui cadastro? <a>Crie uma conta</a></p>
+            <label>Senha*</label>
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+
+            <button className="botao-login" type="submit">
+              Entrar
+            </button>
+          </form>
+
+          <p className="cadastro">Não possui cadastro? <a>Crie uma conta</a></p>
         </div>
-    </div>
+      </div>
 
-    <div className="login-direita">
-        <img src={logo} className="login-logo" />
+      <div className="login-direita">
+        <img src={logo} className="login-logo" alt="logo" />
+      </div>
     </div>
-    </div>
-
   );
 }
 
