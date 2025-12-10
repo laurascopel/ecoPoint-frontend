@@ -14,7 +14,8 @@ function AppRoutes() {
 
       <Route path="/" element={<DashboardLayout />}>
 
-        <Route path="dashboard" element={<DashboardColetora />} />
+        <Route path="dashboardColetora" element={<DashboardColetora />} />
+        <Route path="dashboardGeradora" element={<DashboardGeradora />} />
         <Route path="nova-solicitacao" element={<NovaSolicitacao />} />
 
       </Route>

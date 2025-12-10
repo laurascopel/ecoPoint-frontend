@@ -1,38 +1,72 @@
 import "../styles/pages/Login.css";
 import logo from "../assets/logo_branco.svg";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function LoginColetora() {
-  
+  const navigate = useNavigate(); // método do react-router
+  const [email, setEmail] = useState(""); // armazena email em tempo real
+  const [senha, setSenha] = useState(""); // armazena senha em tempo real
+
+  function logar(e) {
+    e.preventDefault(); // evita reload da página
+    fetch("http://localhost:8080/empresasColetoras/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, senha }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          navigate("/dashboardColetora");
+        } else {
+          console.log("Resposta de erro:", res);
+        }
+      });
+  }
+
   return (
     <div className="login-container">
-
-    <div className="login-esquerda">
+      <div className="login-esquerda">
         <div className="login-box">
-        <a className="botao-voltar" href="/home">
-        <MdKeyboardArrowLeft /> Página Inicial
-        </a>
-        
-        <h1>Faça login</h1>
-        <p className="descricao">Coloque seu e-mail e sua senha para fazer login</p>
+          <a className="botao-voltar" href="/home">
+            <MdKeyboardArrowLeft /> Página Inicial
+          </a>
 
-        <label>E-mail*</label>
-        <input type="email" placeholder="Digite seu e-mail" />
+          <h1>Faça login</h1>
+          <p className="descricao">Coloque seu e-mail e sua senha para fazer login</p>
 
-        <label>Senha*</label>
-        <input type="password" placeholder="Digite sua senha" />
+          {/* formulário chama logar no submit */}
+          <form onSubmit={logar}>
+            <label>E-mail</label>
+            <input
+              type="email"
+              placeholder="Digite seu e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-        <button className="botao-login">Entrar</button>
+            <label>Senha*</label>
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
 
-        <p className="cadastro">Não possui cadastro? <a>Crie uma conta</a></p>
+            <button className="botao-login" type="submit">
+              Entrar
+            </button>
+          </form>
+
+          <p className="cadastro">Não possui cadastro? <a>Crie uma conta</a></p>
         </div>
-    </div>
+      </div>
 
-    <div className="login-direita">
-        <img src={logo} className="login-logo" />
+      <div className="login-direita">
+        <img src={logo} className="login-logo" alt="logo" />
+      </div>
     </div>
-    </div>
-
   );
 }
 
