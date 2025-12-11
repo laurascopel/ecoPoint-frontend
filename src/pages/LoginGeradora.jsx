@@ -10,21 +10,21 @@ function LoginGeradora() {
   const [senha, setSenha] = useState("");
 
   function logar(e) {
-    e.preventDefault();
-    fetch("http://localhost:8080/EmpresaGeradora/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, senha }),
+  e.preventDefault();
+  fetch("http://localhost:8080/EmpresaGeradora/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, senha }),
+  })
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json(); 
+        localStorage.setItem("geradoraId", data.id); 
+        navigate("/dashboardGeradora");
+      } else {
+        alert("E-mail ou senha inválidos");
+      }
     })
-      .then(async (res) => {
-        if (res.ok) {
-          const data = await res.json(); 
-          localStorage.setItem("geradoraId", data.id); 
-          navigate("/dashboardGeradora");
-        } else {
-          console.log("Resposta de erro:", res);
-        }
-      });
   }
 
   return (
