@@ -7,6 +7,7 @@ import DashboardGeradora from "../pages/geradora/DashboardGeradora";
 import DashboardLayoutColetora from "../layouts/DashboardLayoutColetora";
 import DashboardLayoutGeradora from "../layouts/DashboardLayoutGeradora";
 import NovaSolicitacao from "../pages/geradora/NovaSolicitacao";
+import LandingPage from "../pages/LandingPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes() {
@@ -15,7 +16,7 @@ function AppRoutes() {
       <Routes>
 
         {/* Rotas públicas */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/LoginGeradora" element={<LoginGeradora />} />
         <Route path="/LoginColetora" element={<LoginColetora />} />

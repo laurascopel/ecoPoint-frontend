@@ -16,7 +16,8 @@
   gap: 25px;
 }
 
-.menu-item {
+.menu-item, .logout-btn {
+  background: white;
   color: #A3AED0;
   font-size: 16px;
   font-weight: 500;
@@ -30,7 +31,7 @@
   background: #F1F5F9;
 }
 
-.menu-item.active {
+.menu-item.active, .logout-btn.active {
   background: #E6F4D9;
   color: #75B51A;
   font-weight: 600;

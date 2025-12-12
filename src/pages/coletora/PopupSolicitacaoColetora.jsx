@@ -76,7 +76,7 @@ function PopupSolicitacaoColetora({ visible, onClose, solicitacao, atualizar }) 
     <div className="popup-container">
       <div className="popup-content">
         <IoCloseCircle className="botao-fechar" onClick={onClose} />
-        <div className="header">
+        <div className="header-popup">
         <h2>Coleta #{solicitacao.id}</h2>
           <span
           className="status"
