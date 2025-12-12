@@ -59,8 +59,6 @@ function LoginColetora() {
               Entrar
             </button>
           </form>
-
-          <p className="cadastro">Não possui cadastro? <a>Crie uma conta</a></p>
         </div>
       </div>
 
