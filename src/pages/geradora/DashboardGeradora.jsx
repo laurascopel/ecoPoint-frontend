@@ -117,13 +117,6 @@ function DashboardGeradora() {
               ))}
           </div>
         </div>
-
-      </div>
-
-      <div className="rodape">
-        <button className="botao-relatorio">
-          <FaFileExport /> Gerar Relatório
-        </button>
       </div>
 
      <PopupSolicitacaoGeradora

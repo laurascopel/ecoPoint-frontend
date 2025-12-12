@@ -9,23 +9,24 @@ function LoginColetora() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+
   function logar(e) {
-    e.preventDefault();
-    fetch("http://localhost:8080/empresasColetoras/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, senha }),
+  e.preventDefault();
+  fetch("http://localhost:8080/empresasColetoras/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, senha }),
+  })
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json(); 
+        localStorage.setItem("coletoraId", data.id);
+        navigate("/dashboardColetora");
+      } else {
+        alert("E-mail ou senha inválidos");
+      }
     })
-      .then(async (res) => {
-        if (res.ok) {
-          const data = await res.json(); 
-          localStorage.setItem("coletoraId", data.id);
-          navigate("/dashboardColetora");
-        } else {
-          console.log("Resposta de erro:", res);
-        }
-      });
-  }
+}
 
   return (
     <div className="login-container">
@@ -58,8 +59,6 @@ function LoginColetora() {
               Entrar
             </button>
           </form>
-
-          <p className="cadastro">Não possui cadastro? <a>Crie uma conta</a></p>
         </div>
       </div>
 

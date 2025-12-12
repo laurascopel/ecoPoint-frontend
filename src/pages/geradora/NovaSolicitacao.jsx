@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/pages/geradora/NovaSolicitacao.css";
+import { useNavigate } from "react-router-dom";
+
 
 function NovaSolicitacao() {
+    const navigate = useNavigate();
     const [itens, setItens] = useState([]);
     const [itensSelecionados, setItensSelecionados] = useState([]);
     const [empresas, setEmpresas] = useState([]);
     const [empresaColetora, setEmpresaColetora] = useState("");
     const [data, setData] = useState("");
+
+ 
+    
+
+  
   
     useEffect(() => {
       fetch("http://localhost:8080/itemresiduo")
@@ -48,6 +56,7 @@ function NovaSolicitacao() {
       })
         .then(res => res.json())
         .then(data => alert("Solicitação criada!"));
+        navigate("/dashboardGeradora");
     }
 
   return (
